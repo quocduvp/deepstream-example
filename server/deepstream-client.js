@@ -16,7 +16,9 @@ client.login(
     type: "admin",
   },
   (success, data) => {
+    console.log(success, data)
     if (success) {
+      client.event.emit("message", "test")
       client.event.subscribe("send_message", ({ payload, user }) => {
         console.log("React Send: ", payload.message)
         client.event.emit(`message_${user.user_id}`, {
