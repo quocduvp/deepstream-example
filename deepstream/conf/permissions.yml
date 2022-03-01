@@ -1,0 +1,55 @@
+presence:
+  "*":
+    allow: true
+record:
+  "*":
+    create: 'user.data.role === "admin"'
+    write: 'user.data.role === "admin"'
+    read: 'user.data.role === "admin"'
+    delete: 'user.data.role === "admin"'
+    listen: 'user.data.role === "admin"'
+event:
+  "*":
+    publish: 'user.data.role === "admin"'
+    subscribe: true
+    listen: 'user.data.role === "admin"'
+  "message_$userID":
+     publish: 'user.data.role === "admin"'
+     subscribe: 'user.data.user_id === $userID  || user.data.role === "admin"'
+     listen: 'user.data.role === "admin"'
+  # "user_$userID":
+  #   publish: 'user.data.role === "admin"'
+  #   subscribe: 'user.data.user_id === $userID  || user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+  # "user_$userID_comment":
+  #   publish: 'user.data.role === "admin"'
+  #   subscribe: 'user.data.user_id === $userID  || user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+  # "room_$userID_$roomID":
+  #   publish: 'user.data.role === "admin"'
+  #   subscribe: 'user.data.user_id === $userID'
+  #   listen: 'user.data.role === "admin"'
+  # "get_list_rooms":
+  #   publish: 'user.data.role === "user" || user.data.role === "admin"'
+  #   subscribe: 'user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+  # "get_list_replies":
+  #   publish: 'user.data.role === "user" || user.data.role === "admin"'
+  #   subscribe: 'user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+  # "get_list_replies_unseen":
+  #   publish: 'user.data.role === "user" || user.data.role === "admin"'
+  #   subscribe: 'user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+  # "test_$userID":
+  #   publish: 'user.data.user_id === $userID || user.data.role === "admin"'
+  #   subscribe: 'user.data.user_id === $userID ||user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+  # "get_list_posts":
+  #   publish: 'user.data.role === "user" || user.data.role === "admin"'
+  #   subscribe: 'user.data.role === "admin"'
+  #   listen: 'user.data.role === "admin"'
+rpc:
+  "*":
+    provide: true
+    request: true
